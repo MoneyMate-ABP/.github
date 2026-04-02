@@ -15,6 +15,7 @@
 #### 1. Auth
 - Register, Login, Logout
 - Token-based (JWT)
+- Google login via Firebase ID token (auto-register)
 
 #### 2. Kategori
 - Default: Makanan, Transportasi, Hiburan, Lainnya
@@ -54,7 +55,7 @@
 
 ```sql
 -- users
-id, name, email, password, created_at
+id, name, email, password(nullable for google), firebase_uid (nullable), auth_provider (local atau google), created_at
 
 -- categories
 id, name, type (income/expense/both)
@@ -106,6 +107,7 @@ function getDailyStatus(budgetPeriod, targetDate) {
 -- Auth --
 POST   /api/auth/register
 POST   /api/auth/login
+POST   /api/auth/google
 POST   /api/auth/logout
 
 -- Transactions --
